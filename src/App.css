@@ -42,3 +42,13 @@ a{
 input{
   margin-top: 30px;
 }
+table{
+  width: 80%;
+}
+table, th, td {
+  border:1px solid #fff;
+  padding: 3px;
+}
+th,td{
+  padding: 10px;
+}
