@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './views/nav.js';
 import Covid from './views/covid.js';
 import Todo from './views/todo';
+import NewCountDown from './views/countdown.js';
 import React, { useState, useEffect } from 'react';
 function App() {
   const link = 'https://www.w3schools.com/howto/howto_js_topnav.asp';
@@ -42,6 +43,11 @@ function App() {
     { id: 'todo1', title: 'siuuuu', type: 'HT' },
     { id: 'todo2', title: 'gooooo', type: 'jus' },
   ])
+
+const onTimesup = () => {
+  alert('times up')
+}
+
   return (
     <div className="App">
       <Nav />
@@ -50,6 +56,7 @@ function App() {
 
         <img style={{ marginTop: '0px' }} src={logo} className="App-logo" alt="logo" />
         <h1>Hello {name}</h1>
+        <NewCountDown onTimesup={onTimesup}/>
         <a href={link}> Đi thôi</a>
 
         < Covid />

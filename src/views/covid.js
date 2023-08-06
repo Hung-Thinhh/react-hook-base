@@ -26,7 +26,7 @@ const Covid = () => {
     // const [dataCovid, setDataCovid] = useState([])
     // const [loading, setLoading] = useState(true)
     // const [isError, setIsError] = useState(false)
-    console.log(dataCovid)
+    // console.log(dataCovid)
 
     return (
         <>

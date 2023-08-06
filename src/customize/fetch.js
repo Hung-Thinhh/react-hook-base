@@ -19,7 +19,6 @@ const useFetch = (url) => {
                 setData(data);
                 setLoading(false);
                 setIsError(false);
-                console.log(data[0])
 
             }
 
