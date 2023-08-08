@@ -1,5 +1,5 @@
 import useFetch from '../customize/fetch.js';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 import './blog.scss'
 
 
@@ -7,13 +7,17 @@ const Blog = () => {
 
 
     const { data: dataCovid, loading, isError } = useFetch('https://jsonplaceholder.typicode.com/posts')
-
+    let navigate = useNavigate ()
+    const handleCreate =() =>{
+        navigate("/createblog");
+    }
     console.log(dataCovid)
 
     const data = dataCovid.slice(0,12)
     return (
         <>
             <h3>List blogs</h3>
+            <div style={{ padding: '10px', border: '1px solid' ,cursor:'pointer'}} onClick={handleCreate}>Create blog +</div>
             <div className='main'>
                 {isError === false && loading === false && dataCovid && dataCovid.length > 0 && data.map(item => {
 

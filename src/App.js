@@ -6,6 +6,7 @@ import Blog from './views/blog';
 import Todo from './views/todo';
 import Fullblog from './views/fullblog';
 import NewCountDown from './views/countdown.js';
+import CreateBlog from './views/createblog';
 import React, { useState, useEffect } from 'react';
 
 import {
@@ -92,6 +93,9 @@ function App() {
             </>} />
           <Route path="/blog/:id" element={<>
               < Fullblog />
+            </>} />
+            <Route path="/createblog" element={<>
+              < CreateBlog />
             </>} />
           </Routes>
 
