@@ -7,13 +7,17 @@ const useFetch = (url) => {
     const [isError, setIsError] = useState(false)
 
     useEffect(() => {
-        try {
+
+        const ourRequest = axios.CancelToken.source() // <-- 1st step
 
 
-            // let data = getData() && getData().data ? getData().data : [];
-            async function fetchData() {
 
-                let res = await axios.get(url);
+        // let data = getData() && getData().data ? getData().data : [];
+        async function fetchData() {
+            try {
+                let res = await axios.get(url, {
+                    cancelToken: ourRequest.token, // <-- 2nd step
+                });
                 let data = (res && res.data) ? res.data : [];
 
                 setData(data);
@@ -22,14 +26,27 @@ const useFetch = (url) => {
 
             }
 
-            // Gọi hàm fetchData() để lấy dữ liệu từ API
-            fetchData();
-        } catch (e) {
-            setLoading(false)
-            setIsError(true)
+            catch (e) {
+                if (axios.isCancel(e)) {
+                    console.log('Previous request canceled, new request is send', e.message);
+                } else {
+                    // handle error
+                    setLoading(false)
+                    setIsError(true)
+                }
+            }
+
+
+        }
+        setTimeout(() => {
+            fetchData()
+        }, 1000)
+
+        return () => {
+            ourRequest.cancel('error') // <-- 3rd step
         }
 
-    }, []);
-    return {data, loading, isError}
+    }, [url]);
+    return { data, loading, isError }
 }
 export default useFetch;

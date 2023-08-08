@@ -2,9 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import Nav from './views/nav.js';
 import Covid from './views/covid.js';
+import Blog from './views/blog';
 import Todo from './views/todo';
+import Fullblog from './views/fullblog';
 import NewCountDown from './views/countdown.js';
 import React, { useState, useEffect } from 'react';
+
+import {
+  BrowserRouter as Router, Routes, Route
+} from "react-router-dom";
+
 function App() {
   const link = 'https://www.w3schools.com/howto/howto_js_topnav.asp';
 
@@ -44,37 +51,56 @@ function App() {
     { id: 'todo2', title: 'gooooo', type: 'jus' },
   ])
 
-const onTimesup = () => {
-  alert('times up')
-}
+  const onTimesup = () => {
+    alert('times up')
+  }
 
   return (
-    <div className="App">
-      <Nav />
+    <Router>
+      <div className="App">
+        <Nav />
 
-      <header className="App-header">
+        <header className="App-header">
 
-        <img style={{ marginTop: '0px' }} src={logo} className="App-logo" alt="logo" />
-        <h1>Hello {name}</h1>
-        <NewCountDown onTimesup={onTimesup}/>
-        <a href={link}> Đi thôi</a>
+          <img style={{ marginTop: '50px' }} src={logo} className="App-logo" alt="logo" />
 
-        < Covid />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <h1>Hello {name}</h1>
+                <NewCountDown onTimesup={onTimesup} />
+                <a href={link}> Đi thôi</a>
+              </>
+            } />
+            <Route path="/covid19" element={<>
+              < Covid />
+            </>} />
+            <Route path="/todo" element={<>
+              <Todo
+                todos={todos}
+                title={'Todos Alls'}
+                deletetodos={deletetodos}
+              />
+              <Todo
+                todos={todos.filter(todo => todo.type === 'HT')}
+                title={'Todos HT'}
+                deletetodos={deletetodos}
+              />
+            </>} />
+            <Route path="/blog" element={<>
+              < Blog />
+            </>} />
+          <Route path="/blog/:id" element={<>
+              < Fullblog />
+            </>} />
+          </Routes>
 
-        {/* <Todo
-           todos = {todos}
-           title = {'Todos Alls'}
-           deletetodos = {deletetodos}
-        />
-         <Todo
-           todos = {todos.filter(todo => todo.type === 'HT')}
-           title = {'Todos HT'}
-           deletetodos = {deletetodos}
-        /> */}
-        <input type='text' value={address} onChange={(event) => handleOnChange(event)} />
-        <button onClick={(event) => clickMe(event)}>Click me</button>
-      </header>
-    </div>
+          
+          <input type='text' value={address} onChange={(event) => handleOnChange(event)} />
+          <button onClick={(event) => clickMe(event)}>Click me</button>
+        </header>
+      </div>
+    </Router>
   );
 }
 

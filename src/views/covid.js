@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import useFetch from '../customize/fetch.js';
 
 const Covid = () => {
