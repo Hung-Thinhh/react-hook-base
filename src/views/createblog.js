@@ -2,7 +2,7 @@ import './createblog.scss'
 import { useState } from 'react';
 
 
-const CreateBlog = () => {
+const CreateBlog = (props) => {
     let [title, setTitle] = useState('')
     let [content, setContent] = useState('')
     const handleTitle = (event) => {
@@ -12,8 +12,23 @@ const CreateBlog = () => {
         setContent(event.target.value)
     }
     const handleBtn = () => {
+        if (!title) {
+            alert('Plase enter a title')
+            return;
+        }
+        if (!content) {
+            alert('Please enter a content')
+            return;
 
-        console.log(title,content)
+        }
+        console.log('title:' + title, 'content:' + content)
+        let newBlog = {
+            title: title,
+            body: content,
+            userId: 1,
+            id:0
+        }
+        props.handleCreate(newBlog)
     }
     return (
         <>
