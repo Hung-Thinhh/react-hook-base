@@ -37,6 +37,7 @@ const Blog = () => {
 
     return (
         <>
+            <h3>List blogs</h3>
 
             <>
                 <Button variant="primary" onClick={handleShow}>
@@ -54,8 +55,6 @@ const Blog = () => {
                 </Modal>
             </>
 
-            <h3>List blogs</h3>
-            <div style={{ padding: '10px', border: '1px solid', cursor: 'pointer' }} onClick={handleCreate}>Create blog +</div>
             <div className='main'>
                 {isError === false && loading === false && dataCovid && dataCovid.length > 0 && newData.map(item => {
 
@@ -70,7 +69,7 @@ const Blog = () => {
                                 <button className='more_btn'>
                                     <NavLink to={`/blog/${item.id}`} end>More</NavLink>
                                 </button>
-                                <div style={{float: 'right'}} onClick={() => deleBlog(item.id)}>X</div>
+                                <div style={{float: 'right',cursor:'pointer'}} onClick={() => deleBlog(item.id)}>X</div>
                             </div>
                         )
                     }
