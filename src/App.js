@@ -7,6 +7,7 @@ import Todo from './views/todo';
 import Fullblog from './views/fullblog';
 import NewCountDown from './views/countdown.js';
 import CreateBlog from './views/createblog';
+import NotFoud from './views/notfoud';
 import React, { useState, useEffect } from 'react';
 
 import {
@@ -91,17 +92,25 @@ function App() {
             <Route path="/blog" element={<>
               < Blog />
             </>} />
-          <Route path="/blog/:id" element={<>
+            <Route path="/blog/:id" element={<>
               < Fullblog />
             </>} />
             <Route path="/createblog" element={<>
               < CreateBlog />
             </>} />
+            <Route path="/about" element={<>
+              <>
+                <input type='text' value={address} onChange={(event) => handleOnChange(event)} />
+                <button onClick={(event) => clickMe(event)}>Click me</button>
+              </>
+            </>} />
+            <Route path="/*" element={<>
+              < NotFoud />
+            </>} />
           </Routes>
 
-          
-          <input type='text' value={address} onChange={(event) => handleOnChange(event)} />
-          <button onClick={(event) => clickMe(event)}>Click me</button>
+
+
         </header>
       </div>
     </Router>
